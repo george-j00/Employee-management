@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
     "dotenv": "^16.0.3",
     "mongoose": "^6.6.5",
     "next": "12.3.1",
@@ -16,7 +17,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
     "react-loader-spinner": "^5.3.4",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

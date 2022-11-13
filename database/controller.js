@@ -12,7 +12,6 @@ export const getUsers = async (req, res) => {
 // GET single data.
 export const getUser = async (req, res) => {
     try {
-        
         const { userId } = req.query
         const user = await Users.findById(userId);
         res.status(200).json(user)
