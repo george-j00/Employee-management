@@ -1,5 +1,6 @@
 import React from 'react'
-import AddUser from './AddUser'
+import AddUser from '../pages/AddUser'
+
 import UpdateUser from './UpdateUser'
 
 const Form = () => {

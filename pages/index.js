@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react';
 import { AiOutlineUserAdd } from "react-icons/ai";
 import Form from '../components/Form';
-import Table from '../components/Table';
+import Table from './Table';
 
 
 

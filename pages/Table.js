@@ -1,14 +1,30 @@
+import axios from "axios";
 import { AiOutlineForm, AiOutlineDelete } from "react-icons/ai";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../lib/helper";
 import { toggleAction } from "../redux/reducer";
-import { Loading } from "./Loading";
+import { Loading } from "../components/Loading";
+import { useState } from "react";
 
+const BASE_URL = "http://localhost:3000"
 
 const Table = () => {
 
-  const { isLoading, isError, data, error } = useQuery('users', getUser)
+  // const { isLoading, isError, data, error } = useQuery('users', getUser)
+
+  // const [result, setData] = useState({})
+
+  try {
+    const res = axios.get(`${BASE_URL}/api/user`)
+    console.log(res, ' this is response ');
+    setData(res)
+
+  } catch (error) {
+    console.error(error)
+  }
+  // console.log(result ,'this is result ')
+
 
   // console.log(data, 'this is data');
 
@@ -27,8 +43,8 @@ const Table = () => {
 
   }
 
-  if (isLoading) return <div className="flex justify-center"> <Loading /> </div>
-  if (isError) return <div>error..{error}</div>
+  // if (isLoading) return <div className="flex justify-center"> <Loading /> </div>
+  // if (isError) return <div>error..{error}</div>
   return (
     <div>
       <table className='container mx-auto mt-5'>
@@ -43,11 +59,9 @@ const Table = () => {
           </tr>
         </thead>
 
-        <tbody className='bg-gray-200'>
+        {/* <tbody className='bg-gray-200'>
           {
             data.users.map(item => (
-
-
               <tr className='text-center'>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
@@ -64,7 +78,7 @@ const Table = () => {
 
             )
           }
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   )

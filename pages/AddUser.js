@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useReducer, useState } from 'react'
-import { queryClient, useMutation } from 'react-query';
-import { addUser, getUser } from '../lib/helper';
-import Success from './Success';
+
+import Success from '../components/Success';
+
+
+const BASE_URL = "http://localhost:3000" 
 
 
 const reducer = (state, action) => {
@@ -16,31 +19,17 @@ const AddUser = () => {
     const [formData, setFormData] = useReducer(reducer, {});
 
 
-    const addMutation = useMutation(addUser, {
-        onSuccess: () => {
-            queryClient.prefetchQuery('users', getUser)
-            
-            console.log('inserted successully');
-        }
-    })
-    // let { name, email, salary, status, dob } = formData
-        
-    // const model = {
-    //     name, email, salary, dob, status: status ?? "Active"
-    // }
-   
-    // addMutation.mutate({formData})
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
         console.log('formdata ', formData);
+        await axios.post(`${BASE_URL}/api/user`, {...formData})
         setSubmit(true)
 
     }
 
-    if (addMutation.isLoading) return <div>loading</div>
-    if (addMutation.isError) return console.log('add user error',addMutation.error.message);
-    if (addMutation.isSuccess) return <Success />
+    // if (addMutation.isLoading) return <div>loading</div>
+    // if (addMutation.isError) return console.log('add user error',addMutation.error.message);
+    // if (addMutation.isSuccess) return <Success />
 
     if (!submit) {
         return (
